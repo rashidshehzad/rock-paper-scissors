@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <head>
     <title>Rock paper scissors.</title>
+    <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-    <script src="./script.js"></script>
-    <button onclick="defaultGame()">Play</button>
+    <section class="buttonContainer">
+        <p class="pseudobutton" onclick="defaultGame()">Play</p>
+        <section class="playButtons">
+            <!--<p class="pseudobutton" id="Rock">Rock</p>
+            <p class="pseudobutton" id="Paper">Paper</p>
+            <p class="pseudobutton" id="Scissors">Scissors</p>-->
+            <button class="pseudobutton"><img id="Rock" src="./Rock.png"></button>
+            <button class="pseudobutton"><img id="Paper" src="./PaperBigger.png"></button>
+            <button class="pseudobutton"><img id="Scissors" src="./Scissors.png"></button>
+        </section>
+    </section>
+    <div id="resultsDiv">
+        <blockquote id="currentScore"></blockquote>
+    </div>
 </body>
+<script src="./script.js"></script>
 </html>

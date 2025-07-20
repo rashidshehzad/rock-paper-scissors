@@ -1,0 +1,46 @@
+body{
+    background-color: beige;
+}
+
+#resultsDiv{
+    margin: 20px;
+    border-radius: 15px;
+    padding: 25px;
+    background-color: aquamarine;
+    justify-items: center;
+    font-style: oblique;
+    font-family:fantasy
+}
+
+#currentScore{
+    background-color: cornflowerblue;
+    border-radius: 15px;
+    padding: 25px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.buttonContainer{
+    background-color: antiquewhite;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.playButtons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pseudobutton{
+    background-color:cadetblue;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.pseudobutton img{
+    width: 160px;
+    height: 200px;
+}

@@ -1,9 +1,17 @@
 console.log("External script script.js referenced by index.html")
 const options=["rock", "paper", "scissors"]
+const resultsDiv=document.querySelector("#resultsDiv")
+const scoreDisplay=document.querySelector("#currentScore")
 let humanScore = 0
 let computerScore = 0
 let humanChoice = 0
 let computerChoice = 0
+let winner = null
+function display(text){
+    const p = document.createElement("p");
+    p.textContent=text;
+    resultsDiv.appendChild(p);
+}
 function getComputerChoice(){
     return Math.floor(Math.random()*3)
 }
@@ -22,44 +30,68 @@ function getHumanChoice(){
             validChoice=true
         }
         else{
-            console.log("Please try again. You entered your choice wrong.")
+            display("Please try again. You entered your choice wrong.")
         }
     }
     return choice
 }
+
 function playRound(humanChoice, computerChoice){
     if (computerChoice==((humanChoice-1)%3)){
         humanScore+=1
-        console.log("You beat "+options[computerChoice]+" with "+options[humanChoice])
+        display("You beat "+options[computerChoice]+" with "+options[humanChoice])
     }
     else if(humanChoice==((computerChoice-1)%3)){
         computerScore+=1
-        console.log("The computer beat "+options[humanChoice]+" with "+options[computerChoice])
+        display("The computer beat "+options[humanChoice]+" with "+options[computerChoice])
     }
     else{
-        console.log("It was a draw.")
+        display("It was a draw.")
     }
-    console.log("Human - "+humanScore)
-    console.log("Computer - "+computerScore)
-}
+    display("Human - "+humanScore)
+    display("Computer - "+computerScore)
+    if (winner == null){
+        scoreDisplay.textContent="Human - "+humanScore+"    Computer - "+computerScore;
+        let humanWon = humanScore>=5;
+        let computerWon = computerScore>=5;
+        if (humanWon && computerWon){
+            winner="Both players"
+        }
+        else if (computerWon){
+            winner="Computer"
+        }
+        else if (humanWon){
+            winner="Human"
+        }
+        (winner!==null && (scoreDisplay.textContent=winner+" won the game!")) //This will never get updated again so it's fine.
+    }}
+
+const rockButton = document.querySelector("#Rock")
+rockButton.addEventListener("click", () => {playRound(0, getComputerChoice())})
+const paperButton = document.querySelector("#Paper")
+paperButton.addEventListener("click", () => {playRound(1, getComputerChoice())})
+const scissorsButton = document.querySelector("#Scissors")
+scissorsButton.addEventListener("click", () => {playRound(2, getComputerChoice())})
+
+/*
 function playGame(rounds){
-    console.log(rounds)
+    display(rounds)
     for (let j = 0; j<rounds; j++){
         humanChoice = getHumanChoice()
         computerChoice = getComputerChoice()
         playRound(humanChoice, computerChoice)
-        console.log(j)
+        display(j)
     }
     if (humanScore>computerScore){
-        console.log("You won!")
+        display("You won!")
     }
     else if(computerScore>humanScore){
-        console.log("The computer beat you!")
+        display("The computer beat you!")
     }
     else{
-        console.log("You're both losers!")
+        display("You're both losers!")
     }
 }
 function defaultGame(){
     playGame(5)
-}
+}*/
